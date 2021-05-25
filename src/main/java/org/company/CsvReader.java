@@ -25,10 +25,13 @@ public class CsvReader {
             CsvToBean<Record> csvToBean = new CsvToBeanBuilder<Record>(reader)
                     .withIgnoreLeadingWhiteSpace(true)
                     .withQuoteChar(DEFAULT_QUOTE_CHARACTER)
+                    .withThrowExceptions(false)
                     .withType(Record.class)
                     .build();
             Iterator<Record> recordIterator = csvToBean.iterator();
             recordIterator.forEachRemaining(records::add);
+            csvToBean.getCapturedExceptions()
+                    .forEach(e -> LOGGER.warn("Could not parse record — invalid data: " + e.getLocalizedMessage()));
         } catch (IOException e) {
             LOGGER.error("Error reading csv to beans; " + e.getMessage());
         }
