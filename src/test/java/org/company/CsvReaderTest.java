@@ -17,11 +17,11 @@ class CsvReaderTest {
     public void testSample() {
         List<Record> records = getRecordsFromResource(SAMPLE_FILE);
         assertEquals(9, records.size());
-        Record monkeyAlbertoRecord = records.stream()
-                .filter(record -> "Monkey Alberto".equals(record.getFullName()))
+        Record promptNegotiatorRecord = records.stream()
+                .filter(record -> "Prompt Negotiator".equals(record.getFullName()))
                 .findAny()
                 .get();
-        assertEquals("I am the very model of a modern major general", monkeyAlbertoRecord.getNotes());
+        assertEquals("I’m just gonna say, this is AMAZING. WHAT NEGOTIATIONS.", promptNegotiatorRecord.getNotes());
     }
 
     @Test
@@ -33,6 +33,17 @@ class CsvReaderTest {
                 .get();
         LocalDateTime expectedDateTime = LocalDateTime.of(2011, Month.APRIL, 1, 11, 0, 0);
         assertEquals(expectedDateTime, monkeyAlbertoRecord.getTimestamp());
+    }
+
+    @Test
+    public void testDurationConversion() {
+        List<Record> records = getRecordsFromResource(SAMPLE_FILE);
+        Record supermanRecord = records.stream()
+                .filter(record -> "Superman übertan".equals(record.getFullName()))
+                .findAny()
+                .get();
+        double expectedFooDurationMillis = 401012123D;
+        assertEquals(expectedFooDurationMillis, supermanRecord.getFooDuration().toMillis());
     }
 
     private List<Record> getRecordsFromResource(String resourceName) {

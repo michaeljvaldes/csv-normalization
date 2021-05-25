@@ -1,8 +1,10 @@
 package org.company;
 
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvCustomBindByName;
 import com.opencsv.bean.CsvDate;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Record {
@@ -20,11 +22,11 @@ public class Record {
     @CsvBindByName(column = "Address")
     private String address;
 
-    @CsvBindByName(column = "FooDuration")
-    private String fooDuration;
+    @CsvCustomBindByName(converter = DurationConverter.class, column = "FooDuration")
+    private Duration fooDuration;
 
-    @CsvBindByName(column = "BarDuration")
-    private String barDuration;
+    @CsvCustomBindByName(converter = DurationConverter.class, column = "BarDuration")
+    private Duration barDuration;
 
     @CsvBindByName(column = "TotalDuration")
     private String totalDuration;
@@ -64,19 +66,19 @@ public class Record {
         this.address = address;
     }
 
-    public String getFooDuration() {
+    public Duration getFooDuration() {
         return fooDuration;
     }
 
-    public void setFooDuration(String fooDuration) {
+    public void setFooDuration(Duration fooDuration) {
         this.fooDuration = fooDuration;
     }
 
-    public String getBarDuration() {
+    public Duration getBarDuration() {
         return barDuration;
     }
 
-    public void setBarDuration(String barDuration) {
+    public void setBarDuration(Duration barDuration) {
         this.barDuration = barDuration;
     }
 
