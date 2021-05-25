@@ -1,11 +1,15 @@
 package org.company;
 
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvDate;
+
+import java.time.LocalDateTime;
 
 public class Record {
 
     @CsvBindByName(column = "Timestamp")
-    private String timestamp;
+    @CsvDate(value = "M/d/yy h:mm:ss a")
+    private LocalDateTime timestamp;
 
     @CsvBindByName(column = "ZIP")
     private String zip;
@@ -28,11 +32,11 @@ public class Record {
     @CsvBindByName(column = "Notes")
     private String notes;
 
-    public String getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 
