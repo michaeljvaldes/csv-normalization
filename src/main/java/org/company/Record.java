@@ -6,6 +6,7 @@ import com.opencsv.bean.CsvDate;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Record {
 
@@ -96,5 +97,25 @@ public class Record {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Record record = (Record) o;
+        return Objects.equals(timestamp, record.timestamp) &&
+                Objects.equals(zip, record.zip) &&
+                Objects.equals(fullName, record.fullName) &&
+                Objects.equals(address, record.address) &&
+                Objects.equals(fooDuration, record.fooDuration) &&
+                Objects.equals(barDuration, record.barDuration) &&
+                Objects.equals(totalDuration, record.totalDuration) &&
+                Objects.equals(notes, record.notes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(timestamp, zip, fullName, address, fooDuration, barDuration, totalDuration, notes);
     }
 }

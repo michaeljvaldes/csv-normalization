@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CsvWriter {
 
-    public void writeCsvToOutputStream(List<Record> records, OutputStream outputStream) {
+    public void writeCsvToOutputStream(List<NormalizedRecord> records, OutputStream outputStream) {
 
     }
 }
