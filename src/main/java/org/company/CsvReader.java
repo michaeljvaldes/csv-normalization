@@ -26,9 +26,7 @@ public class CsvReader {
                 .onMalformedInput(CodingErrorAction.REPLACE)
                 .onUnmappableCharacter(CodingErrorAction.REPLACE)
                 .replaceWith("\uFFFD");
-        try (
-                Reader reader = new BufferedReader(new InputStreamReader(inputStream, decoder));
-        ) {
+        try (Reader reader = new BufferedReader(new InputStreamReader(inputStream, decoder))) {
             CsvToBean<Record> csvToBean = new CsvToBeanBuilder<Record>(reader)
                     .withIgnoreLeadingWhiteSpace(true)
                     .withQuoteChar(DEFAULT_QUOTE_CHARACTER)

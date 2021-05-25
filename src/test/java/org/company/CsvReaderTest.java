@@ -12,7 +12,7 @@ import static org.company.CsvReader.READER_WARNING_MESSAGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CsvReaderTest {
+public class CsvReaderTest {
 
     private static final String SAMPLE_FILE = "sample.csv";
     private static final String SAMPLE_BROKEN_TIMESTAMP_FILE = "sample-broken-timestamp.csv";
