@@ -13,6 +13,14 @@
         <maven.compiler.release>14</maven.compiler.release>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.4</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
