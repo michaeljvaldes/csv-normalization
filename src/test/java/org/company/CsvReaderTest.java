@@ -2,15 +2,20 @@ package org.company;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 
+import static org.company.CsvReader.READER_WARNING_MESSAGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CsvReaderTest {
 
     private static final String SAMPLE_FILE = "sample.csv";
+    private static final String SAMPLE_BROKEN_TIMESTAMP_FILE = "sample-broken-timestamp.csv";
     private final CsvReader reader = new CsvReader();
 
     @Test
@@ -44,6 +49,16 @@ class CsvReaderTest {
                 .get();
         double expectedFooDurationMillis = 401012123D;
         assertEquals(expectedFooDurationMillis, supermanRecord.getFooDuration().toMillis());
+    }
+
+
+    @Test
+    public void testMalformedTimestamp() {
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setErr(new PrintStream(outputStreamCaptor));
+        List<Record> records = getRecordsFromResource(SAMPLE_BROKEN_TIMESTAMP_FILE);
+        assertEquals(0, records.size());
+        assertTrue(outputStreamCaptor.toString().contains(READER_WARNING_MESSAGE));
     }
 
     private List<Record> getRecordsFromResource(String resourceName) {

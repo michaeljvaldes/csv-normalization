@@ -18,6 +18,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class CsvReader {
 
     private static final Logger LOGGER = LogManager.getLogger(CsvReader.class);
+    public static final String READER_WARNING_MESSAGE = "Could not parse record — invalid data";
 
     public List<Record> parseCsvFromInputStream(InputStream inputStream) {
         List<Record> records = new ArrayList<>();
@@ -37,7 +38,7 @@ public class CsvReader {
             Iterator<Record> recordIterator = csvToBean.iterator();
             recordIterator.forEachRemaining(records::add);
             csvToBean.getCapturedExceptions()
-                    .forEach(e -> LOGGER.warn("Could not parse record — invalid data: " + e.getLocalizedMessage()));
+                    .forEach(e -> System.err.println(READER_WARNING_MESSAGE + ": " + e.getLocalizedMessage()));
         } catch (IOException e) {
             LOGGER.error("Error reading csv to beans; " + e.getMessage());
         }
