@@ -16,6 +16,7 @@ public class CsvReaderTest {
 
     private static final String SAMPLE_FILE = "sample.csv";
     private static final String SAMPLE_BROKEN_TIMESTAMP_FILE = "sample-broken-timestamp.csv";
+    private static final String SAMPLE_BROKEN_ZIP_FILE = "sample-broken-zip.csv";
     private final CsvReader reader = new CsvReader();
 
     @Test
@@ -51,12 +52,20 @@ public class CsvReaderTest {
         assertEquals(expectedFooDurationMillis, supermanRecord.getFooDuration().toMillis());
     }
 
-
     @Test
     public void testMalformedTimestamp() {
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
         System.setErr(new PrintStream(outputStreamCaptor));
         List<Record> records = getRecordsFromResource(SAMPLE_BROKEN_TIMESTAMP_FILE);
+        assertEquals(0, records.size());
+        assertTrue(outputStreamCaptor.toString().contains(READER_WARNING_MESSAGE));
+    }
+
+    @Test
+    public void testMalformedZip() {
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setErr(new PrintStream(outputStreamCaptor));
+        List<Record> records = getRecordsFromResource(SAMPLE_BROKEN_ZIP_FILE);
         assertEquals(0, records.size());
         assertTrue(outputStreamCaptor.toString().contains(READER_WARNING_MESSAGE));
     }

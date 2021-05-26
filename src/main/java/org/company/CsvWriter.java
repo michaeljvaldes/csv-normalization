@@ -12,7 +12,6 @@ import java.io.*;
 import java.util.List;
 
 import static com.opencsv.ICSVWriter.DEFAULT_QUOTE_CHARACTER;
-import static com.opencsv.ICSVWriter.NO_QUOTE_CHARACTER;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class CsvWriter {

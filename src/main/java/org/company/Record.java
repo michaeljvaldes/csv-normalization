@@ -17,7 +17,7 @@ public class Record {
     @CsvBindByName(column = "Address")
     private String address;
 
-    @CsvBindByName(column = "ZIP")
+    @CsvCustomBindByName(converter = ZipConverter.class, column = "ZIP")
     private String zip;
 
     @CsvBindByName(column = "FullName")
