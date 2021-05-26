@@ -1,26 +1,28 @@
-# Requirements
-* Java (14+)
+# Csv Normalizer
+We gonna normalize some csv files to*day*.
+
+Get rid of your invalid utf8 and make some simple data transformations, hassle-free!
+
+
+## Requirements
+* Java (14+, 16 works)
 * Maven
-
-# [Download maven 3](https://maven.apache.org/download.cgi)
-
-[follow installation instructions](https://maven.apache.org/install.html)
-
-* tl;dr add mvn to path
-* export PATH=/opt/apache-maven-3.8.1/bin:$PATH
 		
-# Download Java
+## Download Java
 * [...from open jdk from jdk.java.net](https://jdk.java.net/16/)
 * [...or with homebrew](https://mkyong.com/java/how-to-install-java-on-mac-osx/#homebrew-install-latest-java-on-macos)
 
-set environment variables
-
-* JAVA_HOME=g:\JDK\OpenJDK\jdk-14
-* PATH= g:\JDK\OpenJDK\jdk-14\bin;…
 
 <em>this program was built with openjdk 14 and runs with higher versions like 16</em>
+## Install Maven
+[Download maven 3](https://maven.apache.org/download.cgi)
 
-# To Run:
+[Follow installation instructions](https://maven.apache.org/install.html)
+
+* tl;dr add mvn to path
+* export PATH=/opt/apache-maven-3.8.1/bin:$PATH
+
+## To Run:
 You can execute the following commands in the root directory:
 * build jar: `mvn clean package`
 * execute jar: `java -jar target/csv-normalization-1.0.0-SNAPSHOT.jar < [input_file.csv] > [output_file.csv] `
