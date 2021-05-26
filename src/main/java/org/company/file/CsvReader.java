@@ -19,6 +19,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class CsvReader {
 
     private static final Logger LOGGER = LogManager.getLogger(CsvReader.class);
+    private static final String UNICODE_REPLACEMENT_CHARACTER = "\uFFFD";
     public static final String READER_WARNING_MESSAGE = "Could not parse record — invalid data";
 
     public List<Record> parseCsvFromInputStream(InputStream inputStream) {
@@ -26,7 +27,7 @@ public class CsvReader {
         CharsetDecoder decoder = UTF_8.newDecoder()
                 .onMalformedInput(CodingErrorAction.REPLACE)
                 .onUnmappableCharacter(CodingErrorAction.REPLACE)
-                .replaceWith("\uFFFD");
+                .replaceWith(UNICODE_REPLACEMENT_CHARACTER);
         try (Reader reader = new BufferedReader(new InputStreamReader(inputStream, decoder))) {
             CsvToBean<Record> csvToBean = new CsvToBeanBuilder<Record>(reader)
                     .withIgnoreLeadingWhiteSpace(true)
