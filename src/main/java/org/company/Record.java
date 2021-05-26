@@ -14,14 +14,14 @@ public class Record {
     @CsvDate(value = "M/d/yy h:mm:ss a")
     private LocalDateTime timestamp;
 
+    @CsvBindByName(column = "Address")
+    private String address;
+
     @CsvBindByName(column = "ZIP")
     private String zip;
 
     @CsvBindByName(column = "FullName")
     private String fullName;
-
-    @CsvBindByName(column = "Address")
-    private String address;
 
     @CsvCustomBindByName(converter = DurationConverter.class, column = "FooDuration")
     private Duration fooDuration;

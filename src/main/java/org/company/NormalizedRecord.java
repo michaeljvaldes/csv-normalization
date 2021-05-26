@@ -1,6 +1,7 @@
 package org.company;
 
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.CsvDate;
 
 import java.time.LocalDateTime;
@@ -8,28 +9,36 @@ import java.util.Objects;
 
 public class NormalizedRecord {
 
+    @CsvBindByPosition(position = 0)
     @CsvBindByName(column = "Timestamp", required = true)
     @CsvDate(value = "M/d/yy h:mm:ss a")
     private final LocalDateTime timestamp;
 
-    @CsvBindByName(column = "ZIP", required = true)
-    private final String zip;
-
-    @CsvBindByName(column = "FullName", required = true)
-    private final String fullName;
-
+    @CsvBindByPosition(position = 1)
     @CsvBindByName(column = "Address", required = true)
     private final String address;
 
+    @CsvBindByPosition(position = 2)
+    @CsvBindByName(column = "ZIP", required = true)
+    private final String zip;
+
+    @CsvBindByPosition(position = 3)
+    @CsvBindByName(column = "FullName", required = true)
+    private final String fullName;
+
+    @CsvBindByPosition(position = 4)
     @CsvBindByName(column = "FooDuration", required = true)
     private final double fooDuration;
 
+    @CsvBindByPosition(position = 5)
     @CsvBindByName(column = "BarDuration", required = true)
     private final double barDuration;
 
+    @CsvBindByPosition(position = 6)
     @CsvBindByName(column = "TotalDuration", required = true)
     private final double totalDuration;
 
+    @CsvBindByPosition(position = 7)
     @CsvBindByName(column = "Notes", required = true)
     private final String notes;
 

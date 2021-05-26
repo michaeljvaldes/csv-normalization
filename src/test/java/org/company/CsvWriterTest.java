@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,15 +21,28 @@ public class CsvWriterTest {
 
     @Test
     public void writeCsv() throws IOException {
+        List<String> lines = writeFileAndGetLines();
+        long csvFileLinesCount = lines.size();
+        assertEquals(2, csvFileLinesCount);
+    }
+
+    @Test
+    public void testHeader() throws IOException {
+        List<String> lines = writeFileAndGetLines();
+        String header = lines.get(0);
+        String expectedHeader = "Timestamp,Address,ZIP,FullName,FooDuration,BarDuration,TotalDuration,Notes";
+        assertEquals(expectedHeader, header);
+    }
+
+
+    private List<String> writeFileAndGetLines() throws IOException {
         List<NormalizedRecord> normalizedRecords = Collections.singletonList(buildNormalizedRecord());
         File outputFile = File.createTempFile("output", ".csv");
         try (OutputStream outputStream = new FileOutputStream(outputFile)) {
             new CsvWriter().writeCsvToOutputStream(normalizedRecords, outputStream);
-            outputStream.close();
-            try (Stream<String> lines = Files.lines(outputFile.toPath(), StandardCharsets.UTF_8)) {
-                long csvFileLinesCount = lines.count();
-                assertEquals(2, csvFileLinesCount);
-            }
+        }
+        try (Stream<String> lines = Files.lines(outputFile.toPath(), StandardCharsets.UTF_8)) {
+            return lines.collect(Collectors.toList());
         }
     }
 
@@ -36,7 +50,7 @@ public class CsvWriterTest {
         return new NormalizedRecordBuilder()
                 .setTimestamp(LocalDateTime.of(2011, Month.APRIL, 1, 14, 0, 0))
                 .setZip("01003")
-                .setFullName("GREAT NAME FOR A PERSON")
+                .setFullName("GREAT \"NAME\" FOR A PERSON")
                 .setAddress("Super cool address")
                 .setFooDuration(7200D)
                 .setBarDuration(0.1D)
