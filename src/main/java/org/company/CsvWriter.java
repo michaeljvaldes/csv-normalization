@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.*;
 import java.util.List;
 
+import static com.opencsv.ICSVWriter.DEFAULT_QUOTE_CHARACTER;
 import static com.opencsv.ICSVWriter.NO_QUOTE_CHARACTER;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -23,7 +24,8 @@ public class CsvWriter {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(outputStream, UTF_8))) {
             StatefulBeanToCsv<NormalizedRecord> beanToCsv = new StatefulBeanToCsvBuilder<NormalizedRecord>(writer)
                     .withMappingStrategy(mappingStrategy)
-                    .withQuotechar(NO_QUOTE_CHARACTER)
+                    .withQuotechar(DEFAULT_QUOTE_CHARACTER)
+                    .withApplyQuotesToAll(false)
                     .build();
             beanToCsv.write(records);
         } catch (IOException | CsvDataTypeMismatchException | CsvRequiredFieldEmptyException e) {
