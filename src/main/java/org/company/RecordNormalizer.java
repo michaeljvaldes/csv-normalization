@@ -1,6 +1,9 @@
 package org.company;
 
 import org.apache.commons.lang3.StringUtils;
+import org.company.model.NormalizedRecord;
+import org.company.model.NormalizedRecordBuilder;
+import org.company.model.Record;
 
 import java.time.Duration;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package org.company;
+package org.company.file;
 
 import com.opencsv.bean.MappingStrategy;
 import com.opencsv.bean.StatefulBeanToCsv;
@@ -7,6 +7,8 @@ import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.company.mapper.CustomMappingStrategy;
+import org.company.model.NormalizedRecord;
 
 import java.io.*;
 import java.util.List;

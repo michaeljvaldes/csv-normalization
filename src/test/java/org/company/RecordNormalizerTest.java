@@ -1,5 +1,8 @@
 package org.company;
 
+import org.company.model.NormalizedRecord;
+import org.company.model.NormalizedRecordBuilder;
+import org.company.model.Record;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;

@@ -1,5 +1,8 @@
 package org.company;
 
+import org.company.file.CsvWriter;
+import org.company.model.NormalizedRecord;
+import org.company.model.NormalizedRecordBuilder;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

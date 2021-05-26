@@ -1,4 +1,4 @@
-package org.company;
+package org.company.mapper;
 
 import com.opencsv.bean.BeanField;
 import com.opencsv.bean.ColumnPositionMappingStrategy;

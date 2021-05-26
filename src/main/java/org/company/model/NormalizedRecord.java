@@ -1,4 +1,4 @@
-package org.company;
+package org.company.model;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvBindByPosition;

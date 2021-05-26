@@ -1,5 +1,7 @@
 package org.company;
 
+import org.company.file.CsvReader;
+import org.company.model.Record;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -8,7 +10,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 
-import static org.company.CsvReader.READER_WARNING_MESSAGE;
+import static org.company.file.CsvReader.READER_WARNING_MESSAGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

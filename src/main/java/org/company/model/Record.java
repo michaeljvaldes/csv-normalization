@@ -1,8 +1,10 @@
-package org.company;
+package org.company.model;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
 import com.opencsv.bean.CsvDate;
+import org.company.mapper.DurationConverter;
+import org.company.mapper.ZipConverter;
 
 import java.time.Duration;
 import java.time.LocalDateTime;

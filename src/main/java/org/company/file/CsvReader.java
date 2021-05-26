@@ -1,9 +1,10 @@
-package org.company;
+package org.company.file;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.company.model.Record;
 
 import java.io.*;
 import java.nio.charset.CharsetDecoder;
